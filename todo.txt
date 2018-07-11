@@ -1,0 +1,12 @@
+registration : 		[under construction]
+	offline		[done]
+	with email	[not yet]
+
+login	:		[done]
+
+
+
+bikin sorting. pilihan data per page
+bikin modal untuk delete, success notification, fail notification
+bikin button register guru di admin
+bikin versi rest

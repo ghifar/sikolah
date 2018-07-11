@@ -1,0 +1,116 @@
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorator="fragments/main-layout">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+    <title>Users List</title>
+</head>
+<body>
+    <div layout:fragment="content" class="content">
+        <!--&lt;!&ndash; Content Header (Page header) &ndash;&gt;-->
+        <!--<section class="content-header">-->
+            <!--<h1>-->
+                <!--Data Tables-->
+                <!--<small>advanced tables</small>-->
+            <!--</h1>-->
+            <!--<ol class="breadcrumb">-->
+                <!--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
+                <!--<li><a href="#">Tables</a></li>-->
+                <!--<li class="active">Data tables</li>-->
+            <!--</ol>-->
+        <!--</section>-->
+
+
+        <!-- /.box -->
+
+        <div class="box">
+            <div class="box-header">
+                <div class="col-lg-2 col-xs-6">
+                    <td>
+                        <button type="button" class="btn btn-block btn-success btn-lg"><i class="fa fa-plus"></i> Create new</button>
+                    </td>
+                </div>
+            </div>
+
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="box-footer clearfix" th:if="${users.totalPages != 1}">
+                    <select class="form-control pagination" id="pageSizeSelect">
+                        <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+                                th:value="${pageSize}"
+                                th:selected="${pageSize} == ${selectedPageSize}"></option>
+                    </select>
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                        <li th:class="${users.number == 0} ? disabled"><a
+                                class="pageLink"
+                                th:href="@{/users/(pageSize=${selectedPageSize}, page=1)}">«</a>
+                        </li>
+                        <li th:class="${users.number == 0} ? disabled"><a
+                                class="pageLink"
+                                th:href="@{/users/(pageSize=${selectedPageSize}, page=${users.number})}">←</a>
+                        </li>
+                        <li
+                                th:class="${users.number == (page - 1)} ? 'active pointer-disabled'"
+                                th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                            <a class="pageLink"
+                               th:href="@{/users/(pageSize=${selectedPageSize}, page=${page})}"
+                               th:text="${page}"></a>
+                        </li>
+                        <li
+                                th:class="${users.number + 1 == users.totalPages} ? disabled">
+                            <a class="pageLink"
+                               th:href="@{/users/(pageSize=${selectedPageSize}, page=${users.number + 2})}">→</a>
+                        </li>
+                        <li
+                                th:class="${users.number + 1 == users.totalPages} ? disabled">
+                            <a class="pageLink"
+                               th:href="@{/users/(pageSize=${selectedPageSize}, page=${users.totalPages})}">»</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Privileges</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.getName()}">183</td>
+                        <td th:text="${user.getUsername()}">John Doe</td>
+                        <td th:text ="${user.getRoles().iterator().next().getName()}">11-7-2014</td>
+                        <!--<td th:text ="${user.getRoles().iterator().next().getPrivileges().iterator().next()}"></td>-->
+                        <td><span th:text ="${user.getRoles().iterator().next().getPrivileges()}" class="label label-success">Approved</span></td>
+                    </tr>
+                    </tbody>
+                    <!--<tfoot>-->
+                    <!--<tr>-->
+                        <!--<th>Rendering engine</th>-->
+                        <!--<th>Browser</th>-->
+                        <!--<th>Platform(s)</th>-->
+                        <!--<th>Engine version</th>-->
+                        <!--<th>CSS grade</th>-->
+                    <!--</tr>-->
+                    <!--</tfoot>-->
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!--&lt;!&ndash; /.col &ndash;&gt;-->
+    <!--</div>-->
+    <!--&lt;!&ndash; /.row &ndash;&gt;-->
+    <!--</section>-->
+    <!--&lt;!&ndash; /.content &ndash;&gt;-->
+    <!--</div>-->
+
+</body>
+</html>

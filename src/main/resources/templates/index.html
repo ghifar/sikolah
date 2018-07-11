@@ -1,0 +1,171 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/main-layout">
+
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+    <title>Main Page</title>
+</head>
+<body>
+
+    <div layout:fragment="content" class="content">
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <div class="col-md-8">
+
+                <div class="row">
+
+                    <div sec:authorize="hasRole('ROLE_ADMIN')" class="col-lg-4 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <h3 th:text="${jumlahAdmin.size()}"></h3>
+                                <p>Admin</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">
+                                More info <i class="fa fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div sec:authorize="hasAnyRole('ROLE_GURU','ROLE_ADMIN')" class="col-lg-4 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-green">
+                            <div class="inner">
+                                <h3 sec:authorize="hasAnyRole('ROLE_GURU','ROLE_ADMIN')" th:text="${jumlahGuru.size()}">53</h3>
+                                <p>Guru</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">
+                                More info <i class="fa fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div sec:authorize="hasAnyRole('ROLE_GURU','ROLE_ADMIN')" class="col-lg-4 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-aqua">
+                            <div class="inner">
+                                <h3 th:text="${jumlahSiswa.size()}"></h3>
+                                <p>Siswa</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-ios-person"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">
+                                More info <i class="fa fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">User List</h3>
+
+                                <div class="box-tools">
+                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search"/>
+
+                                        <div class="input-group-btn">
+                                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body table-responsive no-padding">
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Username</th>
+                                        <th>Role</th>
+                                        <th>Privileges</th>
+                                    </tr>
+                                    <tr th:each="user : ${users}">
+                                        <td th:text="${user.getName()}">183</td>
+                                        <td th:text="${user.getUsername()}">John Doe</td>
+                                        <td th:text ="${user.getRoles().iterator().next().getName()}">11-7-2014</td>
+                                        <td><span th:text ="${user.getRoles().iterator().next().getPrivileges()}" class="label label-success">Approved</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="box-footer clearfix" th:if="${users.totalPages != 1}">
+                                <select class="form-control pagination" id="pageSizeSelect">
+                                    <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+                                            th:value="${pageSize}"
+                                            th:selected="${pageSize} == ${selectedPageSize}"></option>
+                                </select>
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <li th:class="${users.number == 0} ? disabled"><a
+                                            class="pageLink"
+                                            th:href="@{/(pageSize=${selectedPageSize}, page=1)}">«</a>
+                                    </li>
+                                    <li th:class="${users.number == 0} ? disabled"><a
+                                            class="pageLink"
+                                            th:href="@{/(pageSize=${selectedPageSize}, page=${users.number})}">←</a>
+                                    </li>
+                                    <li
+                                            th:class="${users.number == (page - 1)} ? 'active pointer-disabled'"
+                                            th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                                        <a class="pageLink"
+                                           th:href="@{/(pageSize=${selectedPageSize}, page=${page})}"
+                                           th:text="${page}"></a>
+                                    </li>
+                                    <li
+                                            th:class="${users.number + 1 == users.totalPages} ? disabled">
+                                        <a class="pageLink"
+                                           th:href="@{/(pageSize=${selectedPageSize}, page=${users.number + 2})}">→</a>
+                                    </li>
+                                    <li
+                                            th:class="${users.number + 1 == users.totalPages} ? disabled">
+                                        <a class="pageLink"
+                                           th:href="@{/(pageSize=${selectedPageSize}, page=${users.totalPages})}">»</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--&lt;!&ndash; /.box-body &ndash;&gt;-->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                </div>
+            <div class="col-md-4">
+
+            </div>
+            <!-- /.col -->
+        </div>
+        </div>
+    </div>
+        <!-- /.row -->
+
+    <!--<script th:inline="javascript">-->
+        <!--/*<![CDATA[*/-->
+        <!--$(document).ready(function() {-->
+            <!--changePageAndSize();-->
+        <!--});-->
+        <!--function changePageAndSize() {-->
+            <!--$('#pageSizeSelect').change(function(evt) {-->
+                <!--window.location.replace("/?pageSize=" + this.value + "&page=1");-->
+            <!--});-->
+        <!--}-->
+        <!--/*]]>*/-->
+    <!--</script>-->
+
+<!--<div th:replace="fragments/header :: header"/>-->
+<!--<div th:replace="fragments/sidebar :: sidebar"></div>-->
+<!--<div th:replace="fragments/footer :: footer"/>-->
+</body>
+</html>

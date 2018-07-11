@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Main</title>
+</head>
+<body class="skin-blue sidebar-mini" style="height: auto; min-height: 100%;">
+    <div class="wrapper" style="height: auto; min-height: 100%;">
+        <div th:replace="fragments/header :: header"/>
+        <div th:replace="fragments/sidebar :: sidebar"></div>
+
+
+
+        <div class="content-wrapper" style="min-height: 1735px;">
+            <section class="content-header">
+                <h1>
+                    Home
+                    <small>Version 2.0</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </section>
+            <div layout:fragment="content">
+                <!--your main content goes here-->
+
+            </div>
+        </div>
+
+
+
+        <div th:replace="fragments/footer :: footer"/>
+    </div>
+</body>
+
+</html>
