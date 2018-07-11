@@ -13,22 +13,22 @@ Sistem Informasi Sekolah Using Spring Boot.
 - Crud (***not yet***)
 
 ## how to run:
-in your Command line type: `mvn spring-boot:run`
-or
-run sikolahApplication from your favorite IDE
+in your Command line type: `mvn spring-boot:run`  
+or  
+run sikolahApplication from your favorite IDE  
 
 > database will be created automatically
 
 ### login
 3 roles
 
-user: admin
-pass: admin
+user: admin  
+pass: admin  
 
-user: guru
-pass: guru
+user: guru  
+pass: guru  
 
-user: siswa
-pass: siswa
+user: siswa  
+pass: siswa  
 
 > see setupDataLoader
