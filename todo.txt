@@ -1,12 +1,21 @@
 registration : 		[under construction]
 	offline		[done]
 	with email	[not yet]
-
-login	:		[done]
-
+	with oauth2	[not yet]
 
 
-bikin sorting. pilihan data per page
-bikin modal untuk delete, success notification, fail notification
-bikin button register guru di admin
-bikin versi rest
+
+
+-bikin sorting. pilihan data per page
+-bikin versi rest
+
+
+
+note: if error sql with 'WIB' timezone. change your timezone device. then restart the sql server
+
+Technology :
+- Springboot
+- Mysql
+- Hibernate JPA
+- Spring Security
+- Thymeleaf

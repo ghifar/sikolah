@@ -34,6 +34,7 @@ public class UsersController {
     private static final int[] PAGE_SIZES = { 5, 10,20};
 
     private Logger logger= Logger.getLogger(getClass().getName());
+//    Universal users
 
     @GetMapping("/users")
     public String listUsers(Model model, @RequestParam("pageSize") Optional<Integer> pageSize,
@@ -63,5 +64,9 @@ public class UsersController {
 
         return"usersList";
     }
+
+//    Admin
+
+
 
 }

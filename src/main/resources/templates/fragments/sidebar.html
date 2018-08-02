@@ -158,6 +158,9 @@
             <form  name="f" th:action="@{/logout}" method="post">
             <li><button type="submit" class="btn btn-block btn-danger btn-lg">LOGOUT</button></li>
             </form>
+
+            <a th:href="@{/changePassword}"><button type="button" class="btn btn-block btn-default">Change Password</button></a>
+            <a th:href="@{/admin/register}"><button type="button" class="btn btn-block btn-success">ADD</button></a>
         </ul>
     </section>
     <!-- /.sidebar -->

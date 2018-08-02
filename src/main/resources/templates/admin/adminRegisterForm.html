@@ -1,0 +1,68 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/main-layout">>
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+    <title>Add new account</title>
+</head>
+<body>
+<div layout:fragment="content" class="content">
+    <div class="alert alert-success alert-demissible" th:if="${success}">
+    <h4>
+    <i class="icon fa fa-check"></i>
+    Success!
+    </h4>
+    New account has been created!
+    </div>
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Quick Example</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form th:object="${user}" th:action="@{/admin/register}" method="post">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" placeholder="Full name" id="username" th:field="*{username}"/>
+                    <div class="text text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">oi</div>
+                    <div class="text text-danger" th:if="${exist}">Username already taken!!</div>
+                </div>
+                <div class="form-group">
+                    <label for="name">Nama</label>
+                    <input type="text" class="form-control" placeholder="Full name" id="name" th:field="*{name}"/>
+                    <div class="text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">oi</div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" class="form-control" placeholder="Full name" id="password" th:field="*{password}"/>
+                    <div class="text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">oi</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="role">Choose Role</label>
+                <select class="form-control" th:field="*{roles}" id="role">
+                    <option th:each="role : ${rolesku}"
+                            th:value="${role.id}"
+                            th:text="${role.name}">roles
+
+                    </option>
+                </select>
+                <div class="text text-danger" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}">oi</div>
+            </div>
+
+            <div class="box-footer">
+                <button type="submit" name="submitParam" value="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" name="submitParam" value="cancel" class="btn btn-warning">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

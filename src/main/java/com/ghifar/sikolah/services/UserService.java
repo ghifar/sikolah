@@ -45,15 +45,31 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Page<User> tampilkanSemua() {
+    public User findById(Long id) {
+        return userRepository.findById(id);
+    }
 
-//        List<User> users = userRepository.findAll();
-//        for (User user : users) {
-//            System.out.println("Name : "+user.getUsername());
-//        }
+    @Override
+    public Page<User> tampilkanSemua() {
 
         Page<User> users= userRepository.findAll(new PageRequest(0,5));
         return users;
+    }
+
+    @Override
+    public void deleteUserById(Long id){
+//        userRepository.delete(id);
+        userRepository.delete(id);
+
+    }
+
+    @Override
+    public User updateUser(User user){
+        user.setName(user.getName());
+        user.setUsername(user.getUsername());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEnabled(true);
+        return userRepository.save(user);
     }
 
     @Override
@@ -89,5 +105,23 @@ public class UserService implements IUserService {
 
         user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_SISWA")));
         return userRepository.save(user);
+    }
+
+    @Override
+    public boolean checkIfOldPasswordValid(User user, String oldPassword){
+
+        return passwordEncoder.matches(oldPassword, user.getPassword());
+
+    }
+
+    @Override
+    public void updateUserPassword(User user, String password){
+        user.setPassword(passwordEncoder.encode(password));
+        userRepository.save(user);
+    }
+
+    @Override
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
     }
 }

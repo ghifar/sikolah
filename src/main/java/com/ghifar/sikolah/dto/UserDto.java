@@ -1,10 +1,12 @@
 package com.ghifar.sikolah.dto;
 
 
+import com.ghifar.sikolah.com.ghifar.sikolah.entities.Role;
 import com.ghifar.sikolah.com.ghifar.sikolah.entities.User;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 
 public class UserDto extends User{
 
@@ -17,6 +19,18 @@ public class UserDto extends User{
 
     @Size(min = 3, message = "Size.userDto.name")
     private String name;
+
+//    @NotNull(message = "This field is required")
+    private Collection<Role> roles;
+
+    @Override
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
 
 
 

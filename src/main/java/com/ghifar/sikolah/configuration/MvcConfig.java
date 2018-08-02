@@ -1,5 +1,6 @@
 package com.ghifar.sikolah.configuration;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
@@ -18,7 +19,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/403");
         registry.addViewController("/users");
     }
-
 //    @Override
 //    public void configureDefaultServletHandling(final DefaultServletHandlerConfigurer configurer) {
 //        configurer.enable();

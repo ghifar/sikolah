@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/main-layout">>
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+    <title>Edit Form</title>
+</head>
+<body>
+<div layout:fragment="content" class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Quick Example</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form th:object="${user}" th:action="@{/updateUser}" method="post">
+            <div class="box-body">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input readonly="readonly" th:field="*{username}" type="text" class="form-control" id="username" placeholder="Enter username" />
+                </div>
+                <div class="form-group">
+                    <label for="nama">Nama</label>
+                    <input th:field="*{name}" type="text" class="form-control" id="nama" placeholder="Enter Name"/>
+                </div>
+                <!--<div class="form-group">-->
+                    <!--<label for="oldPassword">Old Password</label>-->
+                    <!--<input th:field="*{password}" type="password" class="form-control" id="oldPassword" placeholder="Old Password"/>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<label for="newPassword">New Password</label>-->
+                    <!--<input type="password" class="form-control" id="newPassword" placeholder="New Password"/>-->
+                <!--</div>-->
+            </div>
+
+            <!-- /.box-body -->
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-warning">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

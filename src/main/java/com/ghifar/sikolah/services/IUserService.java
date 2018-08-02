@@ -16,7 +16,19 @@ public interface IUserService {
 
     public boolean findUserByName(String username);
 
+    public User findById(Long id);
+
     Page<User> tampilkanSemua();
+
+    public void deleteUserById(Long id);
+
+    public User updateUser(User user);
+
+    public boolean checkIfOldPasswordValid(User user, String oldPassword);
+
+    public User findByUsername(String username);
+
+    public void updateUserPassword(User user, String password);
 
 
 }

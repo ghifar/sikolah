@@ -3,10 +3,10 @@
     <div th:fragment="header-css">
         <!-- this is header-css -->
         <!--dibawah dari bootstrap webjar pom.xml-->
-        <link rel="stylesheet" type="text/css"
-              href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css"
-              href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <!--<link rel="stylesheet" type="text/css"-->
+              <!--href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />-->
+        <!--<link rel="stylesheet" type="text/css"-->
+              <!--href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />-->
         <link rel="stylesheet" th:href="@{/css/AdminLTE.css}"/>
         <!-- Bootstrap 3.3.7 dari file static-->
         <!--<link rel="stylesheet" th:href="@{/css/}" href="bower_components/bootstrap/dist/css/bootstrap.min.css">-->
@@ -21,8 +21,10 @@
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" th:href="@{/css/skins/_all-skins.min.css}" />
+
+        <link rel="stylesheet" th:href="@{/bower_components/bootstrap/dist/css/bootstrap.min.css}"/>
+
         <script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
-        <!-- Bootstrap 3.3.7 -->
         <!--<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
         <!-- FastClick -->
         <script th:src="@{/bower_components/fastclick/lib/fastclick.js}"></script>
@@ -41,6 +43,12 @@
         <script th:src="@{/js/pages/dashboard2.js}"></script>
         <!-- AdminLTE for demo purposes -->
         <script th:src="@{/js/demo.js}"></script>
+
+
+        <!-- Bootstrap 3.3.7 -->
+        <!-- NOTE!!!!!!!!!! You need to include jquery js before adding bootstrap js-->
+        <script th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+
     </div>
 
 </head>

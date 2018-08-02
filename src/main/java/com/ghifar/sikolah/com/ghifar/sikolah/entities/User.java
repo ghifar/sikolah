@@ -32,7 +32,7 @@ public class User {
 
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany( cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinTable(name = "USER_ROLES", joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name="ROLE_ID", referencedColumnName = "id")})
     private Collection<Role> roles;

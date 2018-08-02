@@ -12,7 +12,7 @@ public class Privilege {
 
     private String name;
 
-    @ManyToMany(mappedBy = "privileges")
+    @ManyToMany(mappedBy = "privileges",  fetch = FetchType.LAZY)
     private Collection<Role> roles;
 
     public Privilege(){
