@@ -4,13 +4,21 @@ Sistem Informasi Sekolah Using Spring Boot.
 
 
 ------------
+Technology:
+- Springboot
+- Hibernate JPA
 - thymeleaf
+- MySql
+- Spring Security
+------------
 - spring security (register, login)
 	- offline
 	- online
 	- oAuth (***not yet***)
-- simple pagination
-- Crud (***not yet***)
+- simple pagination (***options to show how many data loaded in 1 page still not working.. idk why.***)
+- Crud (***DONE but still, I try to add modals pop-up in thymeleaf***)
+- @Rest controller (***Not Yet***)
+
 
 ## how to run:
 in your Command line type: `mvn spring-boot:run`  
