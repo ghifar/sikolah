@@ -4,7 +4,7 @@ Sistem Informasi Sekolah Using Spring Boot.
 
 
 ------------
-Technologhy:
+Technology:
 - Springboot
 - Hibernate JPA
 - thymeleaf
